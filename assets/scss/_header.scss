@@ -1,0 +1,17 @@
+.header {
+  &-container {
+    padding: 40px 80px;
+  }
+
+  &-logo {
+    a {
+      &:hover {
+        color: var(--color-secondary);
+      }
+
+      path {
+        transition: all 0.4s ease;
+      }
+    }
+  }
+}
