@@ -25,7 +25,7 @@
       margin: 0;
       transform: translateY(0);
       &::after {
-        content: unset;
+        content: "";
         font-size: 0;
       }
     }

@@ -96,7 +96,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: var(--color-black);
+  // background-color: var(--color-black);
   border-radius: 50%;
   transition: all 0.4s ease;
   color: var(--color-black);
@@ -111,7 +111,7 @@
     }
   }
 
-  &::before {
+  &::after {
     content: "";
     width: 100%;
     height: 100%;
@@ -119,15 +119,28 @@
     position: absolute;
     inset: 0;
     z-index: 1;
+    background-color: var(--color-black);
+  }
+
+  &::before {
+    content: "";
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    position: absolute;
+    inset: 0;
+    z-index: 2;
     background-color: var(--color-white);
     transition: all 0.4s ease;
   }
 
   &__pink {
-    background-color: var(--color-white);
-
     &::before {
       background-color: var(--color-secondary);
+    }
+
+    &::after {
+      background-color: var(--color-white);
     }
 
     &:hover {
@@ -139,7 +152,7 @@
     width: auto;
     height: auto;
     position: relative;
-    z-index: 2;
+    z-index: 3;
 
     * {
       transition: all 0.4s ease;
