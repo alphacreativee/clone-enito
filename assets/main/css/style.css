@@ -200,10 +200,10 @@ body {
 .btn--circle:hover {
   color: var(--color-white);
 }
-.btn--circle:hover::after {
+.btn--circle:hover::before {
   transform: scale(0);
 }
-.btn--circle::after {
+.btn--circle::before {
   content: "";
   width: 100%;
   height: 100%;
@@ -217,7 +217,7 @@ body {
 .btn--circle__pink {
   background-color: var(--color-white);
 }
-.btn--circle__pink::after {
+.btn--circle__pink::before {
   background-color: var(--color-secondary);
 }
 .btn--circle__pink:hover {
@@ -258,7 +258,6 @@ body {
   width: 60px;
   height: 60px;
   border-radius: 50%;
-  background-color: #fff;
   margin: 0;
   transform: translateY(0);
 }
@@ -277,12 +276,14 @@ body {
   top: auto;
   bottom: 0;
   left: 0;
+  position: absolute;
 }
 .slider-content .swiper-button-next {
   top: auto;
   bottom: 0;
   right: auto;
   left: 80px;
+  position: absolute;
 }
 .slider-content .slider-captions .current-title {
   color: #fff;
