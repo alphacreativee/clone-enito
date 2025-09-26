@@ -21,7 +21,7 @@ function slider() {
     watchSlidesProgress: true,
     speed: 1000,
     loop: false,
-    allowTouchMove: true, // Cho phép swipe
+    allowTouchMove: false,
     navigation: {
       nextEl: ".swiper-button-next",
       prevEl: ".swiper-button-prev",
@@ -38,8 +38,9 @@ function slider() {
         isTransitioning = true;
 
         // 1. Ẩn content hiện tại ngay lập tức
-        const currentTitleElements =
-          document.querySelectorAll(".current-title");
+        const currentTitleElements = document.querySelectorAll(
+          ".current-title, .current-caption"
+        );
         gsap.to(currentTitleElements, {
           autoAlpha: 0,
           y: -20,
@@ -51,17 +52,30 @@ function slider() {
         setTimeout(() => {
           const swiper = this;
           const nextSlide = swiper.slides[swiper.activeIndex];
-          const nextTitle = nextSlide.getAttribute("data-caption");
+          const nextTitle = nextSlide.getAttribute("data-title");
+          const nextCaption = nextSlide.getAttribute("data-caption");
 
           const captionsContainer = document.querySelector(".slider-captions");
-          if (captionsContainer && nextTitle) {
-            captionsContainer.innerHTML = `<p class='current-title mb-0'>${nextTitle}</p>`;
+          if (captionsContainer) {
+            let contentHTML = "";
+            // Thêm caption nếu có
+            if (nextCaption) {
+              contentHTML += `<p class='current-caption mb-0'>${nextCaption}</p>`;
+            }
+            // Thêm title nếu có
+            if (nextTitle) {
+              contentHTML += `<h3 class='current-title '>${nextTitle}</h3>`;
+            }
+
+            captionsContainer.innerHTML = contentHTML;
           }
 
           // 3. Animate content mới vào
-          const newTitleElements = document.querySelectorAll(".current-title");
+          const newContentElements = document.querySelectorAll(
+            ".current-title, .current-caption"
+          );
           gsap.fromTo(
-            newTitleElements,
+            newContentElements,
             {
               autoAlpha: 0,
               y: 20,
@@ -72,6 +86,7 @@ function slider() {
               ease: "power2.out",
               duration: 0.4,
               delay: 0.1, // Delay nhẹ để tạo hiệu ứng mượt
+              stagger: 0.1, // Stagger effect cho title và caption
             }
           );
         }, 200); // Content mới xuất hiện sau 200ms (trước khi hình chuyển xong)
@@ -117,12 +132,25 @@ function slider() {
     },
   });
 
+  // Initialize content cho slide đầu tiên
   const initialSlide = sliderImages.slides[sliderImages.activeIndex];
-  const currentTitle = initialSlide.getAttribute("data-caption");
+  const initialTitle = initialSlide.getAttribute("data-title");
+  const initialCaption = initialSlide.getAttribute("data-caption");
 
   const captionsContainer = document.querySelector(".slider-captions");
-  if (captionsContainer && currentTitle) {
-    captionsContainer.innerHTML = `<p class='current-title mb-0'>${currentTitle}</p>`;
+  if (captionsContainer) {
+    let initialContentHTML = "";
+
+    // Thêm caption nếu có
+    if (initialCaption) {
+      initialContentHTML += `<p class='current-caption mb-0'>${initialCaption}</p>`;
+    }
+    // Thêm title nếu có
+    if (initialTitle) {
+      initialContentHTML += `<h3 class='current-title '>${initialTitle}</h3>`;
+    }
+
+    captionsContainer.innerHTML = initialContentHTML;
   }
 }
 const init = () => {
