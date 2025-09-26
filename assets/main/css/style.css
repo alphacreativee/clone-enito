@@ -311,6 +311,8 @@ body {
 
 .header-container {
   padding: 40px 80px;
+  position: relative;
+  z-index: 999;
 }
 .header-logo a:hover {
   color: var(--color-secondary);
@@ -326,4 +328,12 @@ body {
 }
 .header-cta__group .phone {
   margin-right: 30px;
+}
+.header-popup {
+  position: fixed;
+  background-color: var(--color-primary);
+  z-index: 998;
+  width: 100%;
+  height: 100vh;
+  bottom: 0;
 }
