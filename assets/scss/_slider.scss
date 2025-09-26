@@ -49,19 +49,28 @@
       left: 80px;
     }
     .slider-captions {
-      display: grid;
-      grid-template-columns: 9fr 3fr;
-      height: 100%;
       .current-title {
-        display: flex;
-        justify-content: center;
-        align-items: center;
         color: #fff;
+        margin-bottom: 40px;
       }
     }
   }
   &-wrapper {
     width: 70%;
+    height: 100%;
+    position: relative;
+    .caption-image {
+      position: absolute;
+      right: 60px;
+      bottom: 60px;
+      z-index: 4;
+      .current-title-big {
+        color: #fff;
+        font-size: 100px;
+        text-transform: uppercase;
+        color: #c49f8a;
+      }
+    }
   }
   &-empty {
     width: 30%;
