@@ -24,12 +24,12 @@ function slider() {
     allowTouchMove: false,
     navigation: {
       nextEl: ".swiper-button-next",
-      prevEl: ".swiper-button-prev",
+      prevEl: ".swiper-button-prev"
     },
     allowTouchMove: false,
     pagination: {
       el: ".slider-paginations",
-      type: "fraction",
+      type: "fraction"
     },
     on: {
       // Trước khi slide bắt đầu chuyển
@@ -45,7 +45,7 @@ function slider() {
           autoAlpha: 0,
           y: -20,
           ease: "power2.out",
-          duration: 0.3,
+          duration: 0.3
         });
 
         // 2. Sau khi content ẩn xong, hiện content mới
@@ -78,7 +78,7 @@ function slider() {
             newContentElements,
             {
               autoAlpha: 0,
-              y: 20,
+              y: 20
             },
             {
               autoAlpha: 1,
@@ -86,7 +86,7 @@ function slider() {
               ease: "power2.out",
               duration: 0.4,
               delay: 0.1, // Delay nhẹ để tạo hiệu ứng mượt
-              stagger: 0.1, // Stagger effect cho title và caption
+              stagger: 0.1 // Stagger effect cho title và caption
             }
           );
         }, 200); // Content mới xuất hiện sau 200ms (trước khi hình chuyển xong)
@@ -128,8 +128,8 @@ function slider() {
             slideInner.style.transition = `${speed}ms ${easing}`;
           }
         });
-      },
-    },
+      }
+    }
   });
 
   // Initialize content cho slide đầu tiên
@@ -153,9 +153,60 @@ function slider() {
     captionsContainer.innerHTML = initialContentHTML;
   }
 }
+
+function header() {
+  if ($("#header").length < 1) return;
+
+  var mySwiper = new Swiper(".header-popup__background", {
+    direction: "vertical",
+    slidesPerView: 3,
+    centeredSlides: true,
+    loop: true,
+    autoplay: false,
+    pagination: false,
+    navigation: false,
+    allowTouchMove: false,
+    simulateTouch: false,
+    slideToClickedSlide: false,
+    mousewheel: false,
+    keyboard: false,
+    preventClicks: true,
+    preventClicksPropagation: true,
+    watchOverflow: true,
+    spaceBetween: 20,
+    speed: 500,
+    initialSlide: 0,
+    on: {
+      init: function () {
+        $(".header-popup__background .swiper-slide").css(
+          "pointer-events",
+          "none"
+        );
+      }
+    }
+  });
+
+  $(".header-popup__nav .nav-item").on("mouseenter", function () {
+    var index = $(this).index();
+    mySwiper.slideToLoop(index);
+
+    $(".header-popup__nav .nav-item").removeClass("active");
+    $(this).addClass("active");
+  });
+
+  // toggle popup menu
+  const btnMenu = $(".btn-header__menu");
+  const headerPopup = $(".header-popup");
+  btnMenu.on("click", function () {
+    btnMenu.toggleClass("open");
+    headerPopup.toggleClass("open");
+  });
+}
+
 const init = () => {
   gsap.registerPlugin(ScrollTrigger);
   slider();
+  header();
 };
 preloadImages("img").then(() => {
   // Once images are preloaded, remove the 'loading' indicator/class from the body
