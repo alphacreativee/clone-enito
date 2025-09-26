@@ -29,6 +29,7 @@
   </head>
   <body>
     <!-- layout -->
+
     <!-- header -->
     <script>
       fetch("./components/header.html")
@@ -72,7 +73,51 @@
     <header id="header"></header>
     <!-- end header -->
     <main>
-      <h1>helo</h1>
+      <span>a</span>
+      <span>b</span>
+      <section class="slider">
+        <div class="slider-content">
+          <div class="slider-content-wrapper">
+            <div class="slider-captions"></div>
+            <div class="slider-arrow">
+              <div class="swiper-button-prev custom-arrow"></div>
+              <div class="swiper-button-next custom-arrow"></div>
+            </div>
+            <div class="slider-paginations"></div>
+          </div>
+        </div>
+        <div class="slider-empty"></div>
+        <div class="slider-wrapper">
+          <div class="swiper slider-image">
+            <div class="swiper-wrapper">
+              <div
+                class="swiper-slide overflow-hidden"
+                data-caption="Образовательная и научная инфраструктура в ближайшем окружении для блестящей карьеры: Губкинский университет, МГУ, МФЮИ, РУДН."
+              >
+                <div class="parallax-img">
+                  <img src="./assets/images/gallery-1.jpg" alt="" />
+                </div>
+              </div>
+              <div
+                class="swiper-slide overflow-hidden"
+                data-caption="В контакте с природой: усадебный парк под окнами, парк Сосенки, долина реки Котловки и пойма реки Коршунихи в нескольких минутах пешком и зеленые массивы поблизости: Воробьевы горы, парк Коломенское, парк Тюфелева роща."
+              >
+                <div class="parallax-img">
+                  <img src="./assets/images/gallery-2.jpg" alt="" />
+                </div>
+              </div>
+              <div
+                class="swiper-slide overflow-hidden"
+                data-caption="На одной волне с городом: качественная инфраструктура для полноценной жизни, добрососедские отношения с научной и интеллектуальной элитой страны, близость столичного центра и тишина старых кварталов."
+              >
+                <div class="parallax-img">
+                  <img src="./assets/images/gallery-3.jpg" alt="" />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
     </main>
     <!-- layout -->
     <!-- footer -->
