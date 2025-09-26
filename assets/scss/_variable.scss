@@ -8,13 +8,13 @@
 
 body {
   background: var(--color-primary);
-}
 
-a {
-  transition: all 0.4s ease;
+  a {
+    transition: all 0.4s ease;
 
-  &:hover {
-    color: var(--color-secondary);
+    &:hover {
+      color: var(--color-secondary);
+    }
   }
 }
 
