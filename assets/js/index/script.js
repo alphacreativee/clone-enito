@@ -302,6 +302,12 @@ function header() {
   btnMenu.on("click", function () {
     btnMenu.toggleClass("open");
     headerPopup.toggleClass("open");
+
+    if (headerPopup.hasClass("open")) {
+      lenis.stop();
+    } else {
+      lenis.start();
+    }
   });
 }
 
