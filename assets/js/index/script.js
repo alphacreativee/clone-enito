@@ -59,10 +59,10 @@ function slider() {
             if (chars.length > 0) {
               gsap.to(chars, {
                 "will-change": "opacity, transform",
-                transformOrigin: "50% 0%",
+                transformOrigin: "bottom center",
                 opacity: 0,
-                rotationX: 90, // Xoay xuống
-                z: -200,
+                rotationX: 0,
+                z: 0,
                 ease: "power2.in",
                 duration: 0.3,
                 stagger: 0.02,
@@ -71,7 +71,7 @@ function slider() {
               gsap.to(titleBig, {
                 rotationX: 90,
                 autoAlpha: 0,
-                transformOrigin: "50% 0%",
+                transformOrigin: "bottom center",
                 ease: "power2.in",
                 duration: 0.4,
               });
@@ -126,15 +126,15 @@ function slider() {
                   gsap.set(char.parentNode, { perspective: 1000 })
                 );
 
-                // Hiệu ứng xoay 3D từ dưới lên giống fx19Titles
+                // Hiệu ứng xoay 3D từ trên xuống giống fx19Titles (ngược lại)
                 gsap.fromTo(
                   split.chars,
                   {
                     "will-change": "opacity, transform",
-                    transformOrigin: "50% 0%",
+                    transformOrigin: "bottom center",
                     opacity: 0,
-                    rotationX: -90,
-                    z: -200,
+                    rotationX: 90,
+                    z: 200,
                   },
                   {
                     ease: "power1",
@@ -151,14 +151,14 @@ function slider() {
                 gsap.fromTo(
                   titleBigElement,
                   {
-                    rotationX: -90,
+                    rotationX: 90,
                     autoAlpha: 0,
-                    transformOrigin: "50% 0%",
+                    transformOrigin: "bottom center",
                   },
                   {
                     rotationX: 0,
                     autoAlpha: 1,
-                    transformOrigin: "50% 0%",
+                    transformOrigin: "bottom center",
                     ease: "power1",
                     duration: 0.6,
                     delay: 0.3,
@@ -276,14 +276,14 @@ function slider() {
           gsap.set(char.parentNode, { perspective: 1000 })
         );
 
-        // Hiệu ứng xoay 3D từ dưới lên giống fx19Titles cho slide đầu tiên
+        // Hiệu ứng xoay 3D từ trên xuống giống fx19Titles (ngược lại) cho slide đầu tiên
         gsap.fromTo(
           split.chars,
           {
             "will-change": "opacity, transform",
-            transformOrigin: "50% 0%",
+            transformOrigin: "bottom center",
             opacity: 0,
-            rotationX: -90,
+            rotationX: 90, // Bắt đầu từ trên
             z: -200,
           },
           {
@@ -301,14 +301,14 @@ function slider() {
         gsap.fromTo(
           titleBigElement,
           {
-            rotationX: -90,
+            rotationX: 90,
             autoAlpha: 0,
-            transformOrigin: "50% 0%",
+            transformOrigin: "bottom center",
           },
           {
             rotationX: 0,
             autoAlpha: 1,
-            transformOrigin: "50% 0%",
+            transformOrigin: "bottom center",
             ease: "power1",
             duration: 0.8,
             delay: 0.5,
