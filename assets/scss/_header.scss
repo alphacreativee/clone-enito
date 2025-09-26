@@ -14,4 +14,17 @@
       }
     }
   }
+
+  &-cta {
+    &__group {
+      .phone {
+        margin-right: 30px;
+      }
+
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 10px;
+    }
+  }
 }

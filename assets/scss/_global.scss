@@ -6,6 +6,7 @@
   background: var(--color-white);
   width: max-content;
   border-radius: 60px;
+
   position: relative;
   overflow: hidden;
   justify-content: center;
@@ -58,5 +59,90 @@
     transition: 0.5s;
     z-index: 1;
     bottom: 0;
+  }
+}
+
+.btn--outline {
+  width: 60px;
+  height: 60px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(233, 228, 220, 0.2);
+  background-color: transparent;
+  border-radius: 50%;
+  transition: all 0.4s ease;
+  color: var(--color-white) !important;
+
+  svg {
+    width: 20px;
+    height: 20px;
+
+    * {
+      transition: all 0.4s ease;
+    }
+  }
+
+  &:hover {
+    border-color: var(--color-secondary);
+  }
+}
+
+.btn--circle {
+  width: 60px;
+  height: 60px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--color-black);
+  border-radius: 50%;
+  transition: all 0.4s ease;
+  color: var(--color-black);
+  overflow: hidden;
+  position: relative;
+
+  &:hover {
+    color: var(--color-white);
+
+    &::after {
+      transform: scale(0);
+    }
+  }
+
+  &::after {
+    content: "";
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    background-color: var(--color-white);
+    transition: all 0.4s ease;
+  }
+
+  &__pink {
+    background-color: var(--color-white);
+
+    &::after {
+      background-color: var(--color-secondary);
+    }
+
+    &:hover {
+      color: var(--color-black);
+    }
+  }
+
+  svg {
+    width: auto;
+    height: auto;
+    position: relative;
+    z-index: 2;
+
+    * {
+      transition: all 0.4s ease;
+    }
   }
 }

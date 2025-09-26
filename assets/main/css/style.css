@@ -9,11 +9,10 @@
 body {
   background: var(--color-primary);
 }
-
-a {
+body a {
   transition: all 0.4s ease;
 }
-a:hover {
+body a:hover {
   color: var(--color-secondary);
 }
 
@@ -162,6 +161,78 @@ body {
   bottom: 0;
 }
 
+.btn--outline {
+  width: 60px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(233, 228, 220, 0.2);
+  background-color: transparent;
+  border-radius: 50%;
+  transition: all 0.4s ease;
+  color: var(--color-white) !important;
+}
+.btn--outline svg {
+  width: 20px;
+  height: 20px;
+}
+.btn--outline svg * {
+  transition: all 0.4s ease;
+}
+.btn--outline:hover {
+  border-color: var(--color-secondary);
+}
+
+.btn--circle {
+  width: 60px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--color-black);
+  border-radius: 50%;
+  transition: all 0.4s ease;
+  color: var(--color-black);
+  overflow: hidden;
+  position: relative;
+}
+.btn--circle:hover {
+  color: var(--color-white);
+}
+.btn--circle:hover::after {
+  transform: scale(0);
+}
+.btn--circle::after {
+  content: "";
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background-color: var(--color-white);
+  transition: all 0.4s ease;
+}
+.btn--circle__pink {
+  background-color: var(--color-white);
+}
+.btn--circle__pink::after {
+  background-color: var(--color-secondary);
+}
+.btn--circle__pink:hover {
+  color: var(--color-black);
+}
+.btn--circle svg {
+  width: auto;
+  height: auto;
+  position: relative;
+  z-index: 2;
+}
+.btn--circle svg * {
+  transition: all 0.4s ease;
+}
+
 .header-container {
   padding: 40px 80px;
 }
@@ -170,4 +241,13 @@ body {
 }
 .header-logo a path {
   transition: all 0.4s ease;
+}
+.header-cta__group .phone {
+  margin-right: 30px;
+}
+.header-cta__group {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 10px;
 }
