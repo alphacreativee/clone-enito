@@ -545,3 +545,22 @@ body {
 .advantages-list li:nth-child(even) {
   transform: translateY(180px);
 }
+
+.place-text {
+  position: relative;
+  overflow: hidden;
+}
+.place-text__line {
+  font-size: 120px;
+  text-transform: uppercase;
+  line-height: 115px;
+  width: 100%;
+  will-change: transform;
+  white-space: nowrap;
+  text-align: center;
+  color: #c49f8a;
+}
+
+.spacing {
+  height: 100vh;
+}
