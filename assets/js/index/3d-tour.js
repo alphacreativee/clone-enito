@@ -119,7 +119,7 @@ function paronomaImage() {
   const btnHideHeader = $(".paronama-tour .control-hide");
   btnHideHeader.on("click", function () {
     btnHideHeader.toggleClass("active");
-    $("#header").toggleClass("hide-header");
+    $("#header, .cta-calling").toggleClass("hide-header");
   });
 }
 

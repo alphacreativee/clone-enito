@@ -355,7 +355,7 @@ body {
   width: 100%;
   top: 0;
   transform: translateY(0);
-  transition: background-color 0.3s ease, transform 0.7s ease;
+  transition: background-color 0.3s ease, transform 0.6s ease;
   background-color: transparent;
 }
 .header.hide-header {
@@ -498,6 +498,9 @@ body {
   right: 64px;
   transform: translate(0, 0);
   transition: transform 0.6s ease;
+}
+.cta-calling.hide-header {
+  transform: translateY(-140px);
 }
 .cta-calling.scroll-down {
   transform: translateX(24px);
