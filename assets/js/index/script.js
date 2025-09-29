@@ -24,12 +24,12 @@ function slider() {
     allowTouchMove: true, // Cho phép swipe
     navigation: {
       nextEl: ".swiper-button-next",
-      prevEl: ".swiper-button-prev"
+      prevEl: ".swiper-button-prev",
     },
     allowTouchMove: false,
     pagination: {
       el: ".slider-paginations",
-      type: "fraction"
+      type: "fraction",
     },
     on: {
       // Trước khi slide bắt đầu chuyển
@@ -49,7 +49,7 @@ function slider() {
           autoAlpha: 0,
           y: -20,
           ease: "power2.out",
-          duration: 0.3
+          duration: 0.3,
         });
 
         // Animation ẩn cho title-big (từng char xoay xuống dưới)
@@ -65,7 +65,7 @@ function slider() {
                 z: 0,
                 ease: "power2.in",
                 duration: 0.3,
-                stagger: 0.02
+                stagger: 0.02,
               });
             } else {
               gsap.to(titleBig, {
@@ -73,7 +73,7 @@ function slider() {
                 autoAlpha: 0,
                 transformOrigin: "bottom center",
                 ease: "power2.in",
-                duration: 0.4
+                duration: 0.4,
               });
             }
           });
@@ -117,7 +117,7 @@ function slider() {
               if (titleBigElement && typeof SplitText !== "undefined") {
                 const split = new SplitText(titleBigElement, {
                   type: "chars",
-                  charsClass: "char"
+                  charsClass: "char",
                 });
 
                 // Set perspective cho parent và từng char
@@ -134,7 +134,7 @@ function slider() {
                     transformOrigin: "bottom center",
                     opacity: 0,
                     rotationX: 90,
-                    z: 200
+                    z: 200,
                   },
                   {
                     ease: "power1",
@@ -143,7 +143,7 @@ function slider() {
                     rotationX: 0,
                     z: 0,
                     duration: 0.6,
-                    delay: 0.3
+                    delay: 0.3,
                   }
                 );
               } else {
@@ -153,7 +153,7 @@ function slider() {
                   {
                     rotationX: 90,
                     autoAlpha: 0,
-                    transformOrigin: "bottom center"
+                    transformOrigin: "bottom center",
                   },
                   {
                     rotationX: 0,
@@ -161,7 +161,7 @@ function slider() {
                     transformOrigin: "bottom center",
                     ease: "power1",
                     duration: 0.6,
-                    delay: 0.3
+                    delay: 0.3,
                   }
                 );
               }
@@ -178,7 +178,7 @@ function slider() {
             newTitleElements,
             {
               autoAlpha: 0,
-              y: 20
+              y: 20,
             },
             {
               autoAlpha: 1,
@@ -186,7 +186,7 @@ function slider() {
               ease: "power2.out",
               duration: 0.4,
               delay: 0.1,
-              stagger: 0.1
+              stagger: 0.1,
             }
           );
         }, 200); // Content mới xuất hiện sau 200ms
@@ -228,8 +228,8 @@ function slider() {
             slideInner.style.transition = `${speed}ms ${easing}`;
           }
         });
-      }
-    }
+      },
+    },
   });
 
   // Initialize content cho slide đầu tiên
@@ -284,8 +284,8 @@ function header() {
           "pointer-events",
           "none"
         );
-      }
-    }
+      },
+    },
   });
 
   $(".header-popup__nav .nav-item").on("mouseenter", function () {
@@ -310,11 +310,30 @@ function header() {
     }
   });
 }
+function initParallaxImages() {
+  // Chọn tất cả các phần tử có class parallax-picture
+  const parallaxImages = document.querySelectorAll(".parallax-picture img");
+
+  parallaxImages.forEach((img) => {
+    gsap.to(img, {
+      yPercent: -15,
+      ease: "none",
+      scrollTrigger: {
+        trigger: img.parentElement,
+        start: "top 70%",
+        end: "bottom top",
+        scrub: true,
+        // markers: true,
+      },
+    });
+  });
+}
 
 const init = () => {
   gsap.registerPlugin(ScrollTrigger);
   slider();
   header();
+  initParallaxImages();
 };
 preloadImages("img").then(() => {
   // Once images are preloaded, remove the 'loading' indicator/class from the body
