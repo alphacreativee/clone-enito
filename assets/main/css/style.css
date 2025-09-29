@@ -8,6 +8,7 @@
 
 body {
   background: var(--color-primary);
+  font-family: Axiforma, HelveticaNeue-Light, Helvetica Neue Light, Helvetica Neue, Helvetica, Arial, sans-serif;
 }
 body a {
   transition: all 0.4s ease;
@@ -358,14 +359,14 @@ body {
 .header-logo a path {
   transition: all 0.4s ease;
 }
-.header-cta__group .phone {
-  margin-right: 30px;
-}
 .header-cta__group {
   display: flex;
   align-items: center;
   justify-content: flex-end;
   gap: 10px;
+}
+.header-cta__group .phone {
+  margin-right: 30px;
 }
 .header-popup {
   position: fixed;
@@ -428,4 +429,19 @@ body {
   width: 100%;
   height: 100%;
   object-fit: cover;
+}
+
+.advantages {
+  padding: 180px 60px;
+  background-color: #565440;
+  position: relative;
+}
+.advantages-title {
+  font-size: 216px;
+  line-height: 190px;
+  text-shadow: none;
+  -webkit-text-stroke-width: 1px;
+  -webkit-text-fill-color: currentColor;
+  -webkit-text-stroke-color: #2c2926;
+  color: transparent;
 }

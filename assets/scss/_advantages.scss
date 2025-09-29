@@ -1,0 +1,16 @@
+.advantages {
+  padding: 180px 60px;
+  background-color: #565440;
+  position: relative;
+  &-title {
+    font-size: 216px;
+    line-height: 190px;
+    text-shadow: none;
+    -webkit-text-stroke-width: 1px;
+    -webkit-text-fill-color: currentColor;
+    -webkit-text-stroke-color: #2c2926;
+    color: transparent;
+    // position: absolute;
+    // left: 0;
+  }
+}
