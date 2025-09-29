@@ -6,6 +6,33 @@
   overflow: hidden;
   position: relative;
 
+  &.banner-home {
+    .swiper {
+      height: 100%;
+    }
+
+    .slider-content {
+      right: 0;
+    }
+
+    .parallax-img {
+      height: 100%;
+    }
+
+    .slider-wrapper .caption-image {
+      right: unset;
+      left: 64px;
+      bottom: 64px;
+      width: 50%;
+    }
+
+    .slider-content {
+      width: 35%;
+      height: 630px;
+      bottom: 0;
+    }
+  }
+
   &-content {
     width: 50%;
     background-color: #c49f8a;
@@ -35,6 +62,7 @@
       right: 0;
       left: auto;
       width: auto;
+      color: var(--color-white);
     }
     .swiper-button-prev {
       top: auto;
