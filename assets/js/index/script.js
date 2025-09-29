@@ -50,29 +50,29 @@ function slider() {
           duration: 0.3,
         });
 
-        // Animation lật theo trục X - lật dọc
+        // Animation flip OUT - lật xuống
         if (currentTitleBigElements.length > 0) {
           currentTitleBigElements.forEach((titleBig) => {
             const chars = titleBig.querySelectorAll(".char");
             if (chars.length > 0) {
               gsap.to(chars, {
-                rotateX: -180,
+                rotateX: 90,
                 opacity: 0,
-                scale: 0.8,
-                ease: "power3.inOut",
-                duration: 0.6,
+                transformOrigin: "50% 0%", // Xoay từ đỉnh
+                ease: "power2.in",
+                duration: 0.5,
                 stagger: {
-                  each: 0.03,
+                  each: 0.02,
                   from: "start",
                 },
               });
             } else {
               gsap.to(titleBig, {
-                rotateX: -180,
+                rotateX: 90,
                 opacity: 0,
-                scale: 0.8,
-                ease: "power3.inOut",
-                duration: 0.6,
+                transformOrigin: "50% 0%",
+                ease: "power2.in",
+                duration: 0.5,
               });
             }
           });
@@ -102,7 +102,7 @@ function slider() {
             captionsContainer.innerHTML = contentHTML;
           }
 
-          // Cập nhật title-big với hiệu ứng lật Eniteo style
+          // Cập nhật title-big với hiệu ứng flip IN
           const captionImageContainer =
             document.querySelector(".caption-image");
           if (captionImageContainer) {
@@ -118,35 +118,36 @@ function slider() {
                   charsClass: "char",
                 });
 
-                // Set perspective cho 3D depth
+                // Set perspective và transform style
                 gsap.set(titleBigElement, {
                   perspective: 1000,
+                  transformStyle: "preserve-3d",
                 });
 
                 split.chars.forEach((char) => {
                   gsap.set(char, {
                     display: "inline-block",
                     transformStyle: "preserve-3d",
+                    transformOrigin: "50% 100%", // Xoay từ đáy
                   });
                 });
 
-                // Hiệu ứng lật 180 độ theo trục X - lật dọc
+                // Hiệu ứng flip IN - lật lên từ dưới
                 gsap.fromTo(
                   split.chars,
                   {
-                    rotateX: 180,
+                    rotateX: -90,
                     opacity: 0,
-                    scale: 0.8,
                   },
                   {
                     rotateX: 0,
                     opacity: 1,
-                    scale: 1,
-                    ease: "power3.out",
-                    duration: 0.8,
-                    delay: 0.2,
+                    ease: "power2.out",
+                    duration: 0.6,
+                    delay: 0.1,
                     stagger: {
-                      each: 0.04,
+                      each: 0.03,
+                      from: "start",
                     },
                   }
                 );
@@ -155,17 +156,16 @@ function slider() {
                 gsap.fromTo(
                   titleBigElement,
                   {
-                    rotateX: 180,
+                    rotateX: -90,
                     opacity: 0,
-                    scale: 0.8,
+                    transformOrigin: "50% 100%",
                   },
                   {
                     rotateX: 0,
                     opacity: 1,
-                    scale: 1,
-                    ease: "power3.out",
-                    duration: 0.8,
-                    delay: 0.2,
+                    ease: "power2.out",
+                    duration: 0.6,
+                    delay: 0.1,
                   }
                 );
               }
@@ -193,7 +193,7 @@ function slider() {
               stagger: 0.1,
             }
           );
-        }, 300);
+        }, 250);
       },
 
       slideChangeTransitionEnd: function () {
@@ -272,32 +272,32 @@ function slider() {
 
       gsap.set(titleBigElement, {
         perspective: 1000,
+        transformStyle: "preserve-3d",
       });
 
       split.chars.forEach((char) => {
         gsap.set(char, {
           display: "inline-block",
           transformStyle: "preserve-3d",
+          transformOrigin: "50% 100%",
         });
       });
 
-      // Animation ban đầu - lật vào theo trục X
+      // Animation ban đầu
       gsap.fromTo(
         split.chars,
         {
-          rotateX: 180,
+          rotateX: -90,
           opacity: 0,
-          scale: 0.8,
         },
         {
           rotateX: 0,
           opacity: 1,
-          scale: 1,
-          ease: "power3.out",
+          ease: "power2.out",
           duration: 0.8,
           delay: 0.5,
           stagger: {
-            each: 0.04,
+            each: 0.03,
             from: "start",
           },
         }
