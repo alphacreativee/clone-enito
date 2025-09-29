@@ -258,6 +258,26 @@ body {
   overflow: hidden;
   position: relative;
 }
+.slider.banner-home .swiper {
+  height: 100%;
+}
+.slider.banner-home .slider-content {
+  right: 0;
+}
+.slider.banner-home .parallax-img {
+  height: 100%;
+}
+.slider.banner-home .slider-wrapper .caption-image {
+  right: unset;
+  left: 64px;
+  bottom: 64px;
+  width: 50%;
+}
+.slider.banner-home .slider-content {
+  width: 35%;
+  height: 630px;
+  bottom: 0;
+}
 .slider-content {
   width: 50%;
   background-color: #c49f8a;
@@ -288,6 +308,7 @@ body {
   right: 0;
   left: auto;
   width: auto;
+  color: var(--color-white);
 }
 .slider-content .swiper-button-prev {
   top: auto;
@@ -350,9 +371,6 @@ body {
 }
 .header.scrolling .btn--circle__pink::after {
   background-color: var(--color-white);
-}
-.header ~ .blank-spacing {
-  height: 124px;
 }
 .header-container {
   padding: 32px 64px;
@@ -472,7 +490,7 @@ body {
 .cta-calling {
   position: fixed;
   z-index: 1000;
-  top: 40px;
+  top: 32px;
   right: 64px;
   transform: translate(0, 0);
   transition: transform 0.6s ease;
