@@ -14,30 +14,28 @@ function slider() {
   if (!document.querySelector(".slider-image")) return;
 
   let interleaveOffset = 0.9;
-  let isTransitioning = false; // Flag để control transition
+  let isTransitioning = false;
 
   const sliderImages = new Swiper(".slider-image", {
     slidesPerView: 1,
     watchSlidesProgress: true,
     speed: 1000,
     loop: false,
-    allowTouchMove: true, // Cho phép swipe
+    allowTouchMove: false,
     navigation: {
       nextEl: ".swiper-button-next",
       prevEl: ".swiper-button-prev"
     },
-    allowTouchMove: false,
     pagination: {
       el: ".slider-paginations",
       type: "fraction"
     },
     on: {
-      // Trước khi slide bắt đầu chuyển
       slideChangeTransitionStart: function () {
         if (isTransitioning) return;
         isTransitioning = true;
 
-        // 1. Ẩn content hiện tại ngay lập tức
+        // 1. Ẩn content hiện tại
         const currentTitleElements = document.querySelectorAll(
           ".current-title, .current-caption"
         );
@@ -52,34 +50,35 @@ function slider() {
           duration: 0.3
         });
 
-        // Animation ẩn cho title-big (từng char xoay xuống dưới)
+        // Animation flip OUT - lật xuống
         if (currentTitleBigElements.length > 0) {
           currentTitleBigElements.forEach((titleBig) => {
             const chars = titleBig.querySelectorAll(".char");
             if (chars.length > 0) {
               gsap.to(chars, {
-                "will-change": "opacity, transform",
-                transformOrigin: "bottom center",
+                rotateX: 90,
                 opacity: 0,
-                rotationX: 0,
-                z: 0,
+                transformOrigin: "50% 0%", // Xoay từ đỉnh
                 ease: "power2.in",
-                duration: 0.3,
-                stagger: 0.02
+                duration: 0.5,
+                stagger: {
+                  each: 0.02,
+                  from: "start"
+                }
               });
             } else {
               gsap.to(titleBig, {
-                rotationX: 90,
-                autoAlpha: 0,
-                transformOrigin: "bottom center",
+                rotateX: 90,
+                opacity: 0,
+                transformOrigin: "50% 0%",
                 ease: "power2.in",
-                duration: 0.4
+                duration: 0.5
               });
             }
           });
         }
 
-        // 2. Sau khi content ẩn xong, hiện content mới
+        // 2. Sau khi ẩn xong, hiện content mới
         setTimeout(() => {
           const swiper = this;
           const nextSlide = swiper.slides[swiper.activeIndex];
@@ -87,16 +86,15 @@ function slider() {
           const nextCaption = nextSlide.getAttribute("data-caption");
           const nextTitleBig = nextSlide.getAttribute("data-title-big");
 
+          // Cập nhật title và caption
           const captionsContainer = document.querySelector(".slider-captions");
           if (captionsContainer) {
             let contentHTML = "";
 
-            // Thêm title nếu có
             if (nextTitle) {
               contentHTML += `<h3 class='current-title mb-2'>${nextTitle}</h3>`;
             }
 
-            // Thêm caption nếu có
             if (nextCaption) {
               contentHTML += `<p class='current-caption mb-0'>${nextCaption}</p>`;
             }
@@ -104,64 +102,70 @@ function slider() {
             captionsContainer.innerHTML = contentHTML;
           }
 
-          // Cập nhật title-big cho caption-image
+          // Cập nhật title-big với hiệu ứng flip IN
           const captionImageContainer =
             document.querySelector(".caption-image");
           if (captionImageContainer) {
             if (nextTitleBig) {
               captionImageContainer.innerHTML = `<h2 class='current-title-big mb-0'>${nextTitleBig}</h2>`;
 
-              // Split text thành từng ký tự
               const titleBigElement =
                 captionImageContainer.querySelector(".current-title-big");
+
               if (titleBigElement && typeof SplitText !== "undefined") {
                 const split = new SplitText(titleBigElement, {
                   type: "chars",
                   charsClass: "char"
                 });
 
-                // Set perspective cho parent và từng char
-                gsap.set(titleBigElement, { perspective: 1000 });
-                split.chars.forEach((char) =>
-                  gsap.set(char.parentNode, { perspective: 1000 })
-                );
+                // Set perspective và transform style
+                gsap.set(titleBigElement, {
+                  perspective: 1000,
+                  transformStyle: "preserve-3d"
+                });
 
-                // Hiệu ứng xoay 3D từ trên xuống giống fx19Titles (ngược lại)
+                split.chars.forEach((char) => {
+                  gsap.set(char, {
+                    display: "inline-block",
+                    transformStyle: "preserve-3d",
+                    transformOrigin: "50% 100%" // Xoay từ đáy
+                  });
+                });
+
+                // Hiệu ứng flip IN - lật lên từ dưới
                 gsap.fromTo(
                   split.chars,
                   {
-                    "will-change": "opacity, transform",
-                    transformOrigin: "bottom center",
-                    opacity: 0,
-                    rotationX: 90,
-                    z: 200
+                    rotateX: -90,
+                    opacity: 0
                   },
                   {
-                    ease: "power1",
+                    rotateX: 0,
                     opacity: 1,
-                    stagger: 0.05,
-                    rotationX: 0,
-                    z: 0,
+                    ease: "power2.out",
                     duration: 0.6,
-                    delay: 0.3
+                    delay: 0.1,
+                    stagger: {
+                      each: 0.03,
+                      from: "start"
+                    }
                   }
                 );
               } else {
-                // Fallback nếu không có SplitText
+                // Fallback không có SplitText
                 gsap.fromTo(
                   titleBigElement,
                   {
-                    rotationX: 90,
-                    autoAlpha: 0,
-                    transformOrigin: "bottom center"
+                    rotateX: -90,
+                    opacity: 0,
+                    transformOrigin: "50% 100%"
                   },
                   {
-                    rotationX: 0,
-                    autoAlpha: 1,
-                    transformOrigin: "bottom center",
-                    ease: "power1",
+                    rotateX: 0,
+                    opacity: 1,
+                    ease: "power2.out",
                     duration: 0.6,
-                    delay: 0.3
+                    delay: 0.1
                   }
                 );
               }
@@ -170,7 +174,7 @@ function slider() {
             }
           }
 
-          // 3. Animate content mới vào
+          // 3. Animate title và caption mới vào
           const newTitleElements = document.querySelectorAll(
             ".current-title, .current-caption"
           );
@@ -189,15 +193,14 @@ function slider() {
               stagger: 0.1
             }
           );
-        }, 200); // Content mới xuất hiện sau 200ms
+        }, 250);
       },
 
-      // Khi slide chuyển xong
       slideChangeTransitionEnd: function () {
         isTransitioning = false;
       },
 
-      // Parallax effect cho hình ảnh (giữ nguyên)
+      // Parallax effect cho hình ảnh
       progress(swiper) {
         swiper.slides.forEach((slide) => {
           const slideProgress = slide.progress || 0;
@@ -242,17 +245,64 @@ function slider() {
   if (captionsContainer) {
     let initialContentHTML = "";
 
-    // Thêm title nếu có
     if (initialTitle) {
       initialContentHTML += `<h3 class='current-title mb-2'>${initialTitle}</h3>`;
     }
 
-    // Thêm caption nếu có
     if (initialCaption) {
       initialContentHTML += `<p class='current-caption mb-0'>${initialCaption}</p>`;
     }
 
     captionsContainer.innerHTML = initialContentHTML;
+  }
+
+  // Initialize title-big cho slide đầu tiên
+  const captionImageContainer = document.querySelector(".caption-image");
+  if (captionImageContainer && initialTitleBig) {
+    captionImageContainer.innerHTML = `<h2 class='current-title-big mb-0'>${initialTitleBig}</h2>`;
+
+    const titleBigElement =
+      captionImageContainer.querySelector(".current-title-big");
+
+    if (titleBigElement && typeof SplitText !== "undefined") {
+      const split = new SplitText(titleBigElement, {
+        type: "chars",
+        charsClass: "char"
+      });
+
+      gsap.set(titleBigElement, {
+        perspective: 1000,
+        transformStyle: "preserve-3d"
+      });
+
+      split.chars.forEach((char) => {
+        gsap.set(char, {
+          display: "inline-block",
+          transformStyle: "preserve-3d",
+          transformOrigin: "50% 100%"
+        });
+      });
+
+      // Animation ban đầu
+      gsap.fromTo(
+        split.chars,
+        {
+          rotateX: -90,
+          opacity: 0
+        },
+        {
+          rotateX: 0,
+          opacity: 1,
+          ease: "power2.out",
+          duration: 0.8,
+          delay: 0.5,
+          stagger: {
+            each: 0.03,
+            from: "start"
+          }
+        }
+      );
+    }
   }
 }
 
@@ -332,11 +382,30 @@ function header() {
     }
   });
 }
+function initParallaxImages() {
+  // Chọn tất cả các phần tử có class parallax-picture
+  const parallaxImages = document.querySelectorAll(".parallax-picture img");
+
+  parallaxImages.forEach((img) => {
+    gsap.to(img, {
+      yPercent: -15,
+      ease: "none",
+      scrollTrigger: {
+        trigger: img.parentElement,
+        start: "top 70%",
+        end: "bottom top",
+        scrub: true
+        // markers: true,
+      }
+    });
+  });
+}
 
 const init = () => {
   gsap.registerPlugin(ScrollTrigger);
   slider();
   header();
+  initParallaxImages();
 };
 preloadImages("img").then(() => {
   // Once images are preloaded, remove the 'loading' indicator/class from the body

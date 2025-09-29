@@ -1,0 +1,111 @@
+.advantages {
+  padding: 180px 60px;
+  background-color: #565440;
+  position: relative;
+  &-title {
+    font-size: 216px;
+    line-height: 190px;
+    text-shadow: none;
+    -webkit-text-stroke-width: 1px;
+    -webkit-text-fill-color: currentColor;
+    -webkit-text-stroke-color: #2c2926;
+    color: transparent;
+    position: absolute;
+    left: 0;
+    top: calc(calc(100% / 12) * 2);
+  }
+  &-wrapper {
+    // padding-left: calc(calc(100% / 12) * 4);
+    max-width: 900px;
+    margin-left: auto;
+  }
+  &-item {
+    position: relative;
+    overflow: hidden;
+    &:hover {
+      .advantages-item__hover {
+        clip-path: circle(70.71068% at 50% 50%);
+      }
+      .advantages-item__hover__description {
+        transition-duration: 0.8s;
+        transition-delay: 0.1s;
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+    &__image {
+      width: 100%;
+      height: 100%;
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+    }
+    &__title {
+      position: absolute;
+      left: 60px;
+      bottom: 40px;
+      z-index: 5;
+      font-size: 13px;
+      color: #e9e4dc;
+    }
+    &__button {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 2;
+
+      .btn-onhover {
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: #565440;
+      }
+      svg {
+        color: #e9e4dc;
+      }
+    }
+    &__hover {
+      position: absolute;
+      overflow: hidden;
+      pointer-events: none;
+      background-color: rgba(44, 41, 38, 0.97);
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 5;
+      padding: 60px 60px 120px 60px;
+      clip-path: circle(0 at 50% 50%);
+      transition: clip-path 0.5s cubic-bezier(0.25, 0.74, 0.22, 0.99);
+      &__description {
+        color: #e9e4dc;
+        will-change: transform, opacity;
+        transform: translateY(40px);
+        opacity: 0;
+        transition-timing-function: cubic-bezier(0.25, 0.74, 0.22, 0.99);
+      }
+    }
+  }
+  &-list {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    li {
+      width: 420px;
+      aspect-ratio: 1;
+      &:nth-child(even) {
+        transform: translateY(180px);
+      }
+    }
+  }
+}
