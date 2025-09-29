@@ -362,12 +362,38 @@ function initParallaxImages() {
     });
   });
 }
+function placeTextAnimation() {
+  if (!document.querySelector(".place-text")) return;
+
+  const lines = gsap.utils.toArray(".place-text__line");
+
+  lines.forEach((line, index) => {
+    const isOdd = (index + 1) % 2 !== 0;
+    const startX = isOdd ? "50%" : "-50%";
+    const endX = isOdd ? "-10%" : "10%";
+
+    gsap.set(line, { x: startX });
+
+    gsap.to(line, {
+      x: endX,
+      ease: "power2.out",
+      scrollTrigger: {
+        trigger: ".place-text",
+        start: "top bottom",
+        end: "bottom 30%",
+        scrub: 1
+        // markers: true,
+      }
+    });
+  });
+}
 
 const init = () => {
   gsap.registerPlugin(ScrollTrigger);
   slider();
   header();
   initParallaxImages();
+  placeTextAnimation();
 };
 preloadImages("img").then(() => {
   // Once images are preloaded, remove the 'loading' indicator/class from the body

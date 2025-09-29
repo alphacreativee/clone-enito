@@ -607,6 +607,25 @@ body {
   transform: translateY(180px);
 }
 
+.place-text {
+  position: relative;
+  overflow: hidden;
+}
+.place-text__line {
+  font-size: 120px;
+  text-transform: uppercase;
+  line-height: 115px;
+  width: 100%;
+  will-change: transform;
+  white-space: nowrap;
+  text-align: center;
+  color: #c49f8a;
+}
+
+.spacing {
+  height: 100vh;
+}
+
 .section-quote {
   padding: 12.5vw 16.6666666667vw;
   background-color: var(--color-third);
