@@ -7,6 +7,10 @@
   transition: background-color 0.3s ease, transform 0.7s ease;
   background-color: transparent;
 
+  &.hide-header {
+    transform: translateY(-140px) !important;
+  }
+
   &.scroll-down {
     transform: translateY(-140px);
   }

@@ -196,6 +196,7 @@ body {
   color: var(--color-black);
   overflow: hidden;
   position: relative;
+  cursor: pointer;
 }
 .btn--circle:hover {
   color: var(--color-white);
@@ -356,6 +357,9 @@ body {
   transform: translateY(0);
   transition: background-color 0.3s ease, transform 0.7s ease;
   background-color: transparent;
+}
+.header.hide-header {
+  transform: translateY(-140px) !important;
 }
 .header.scroll-down {
   transform: translateY(-140px);
@@ -688,4 +692,45 @@ body {
 .section-quote .quote-wrapper__content .content-quote__icon {
   display: inline-block;
   width: 16.6666666667vw;
+}
+
+.paronama-tour {
+  overflow: hidden;
+  height: 100vh;
+  position: relative;
+}
+.paronama-tour__control {
+  width: calc(100vw - 128px);
+  position: absolute;
+  z-index: 2;
+  bottom: 32px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.paronama-tour__control .nav-btn.disabled {
+  opacity: 0.5;
+  pointer-events: none;
+}
+.paronama-tour__control .control-center .control-hide::before, .paronama-tour__control .control-center .control-hide::after {
+  display: none;
+}
+.paronama-tour__control .control-center .control-hide.active .icon {
+  background: url("../../images/vtourskin.png") -210px 0px/825px 220px, #565440;
+}
+.paronama-tour__control .control-center .icon {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  z-index: 4;
+  background: url("../../images/vtourskin.png") -140px 0px/820px 220px, #e9e4dc;
+}
+.paronama-tour canvas {
+  cursor: move;
+}
+
+.page-3d-tour .header {
+  background: linear-gradient(rgba(0, 0, 0, 0.8), transparent);
 }

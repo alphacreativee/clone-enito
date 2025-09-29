@@ -323,7 +323,6 @@ function header() {
   });
 
   gsap.registerPlugin(ScrollTrigger);
-
   ScrollTrigger.create({
     start: "top top",
     end: "bottom bottom",
