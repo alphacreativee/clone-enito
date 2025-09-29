@@ -309,6 +309,28 @@ function header() {
       lenis.start();
     }
   });
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  ScrollTrigger.create({
+    start: "top top",
+    end: "bottom bottom",
+    onUpdate: (self) => {
+      const $header = $("#header, .cta-calling");
+
+      if (window.scrollY === 0) {
+        $header.removeClass("scroll-down scrolling");
+      } else {
+        $header.addClass("scrolling");
+
+        if (self.direction === 1) {
+          $header.addClass("scroll-down");
+        } else {
+          $header.removeClass("scroll-down");
+        }
+      }
+    }
+  });
 }
 
 const init = () => {
