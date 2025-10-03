@@ -387,12 +387,31 @@ function placeTextAnimation() {
   });
 }
 
+function pageGallery() {
+  if ($(".section-gallery").length < 1) return;
+
+  var swiper = new Swiper(".gallery-swiper", {
+    direction: "vertical",
+    slidesPerView: "auto",
+    spaceBetween: 30,
+    loop: true,
+    speed: 800,
+    centeredSlides: true,
+    mousewheel: {
+      releaseOnEdges: false,
+      sensitivity: 1
+    },
+    mousewheel: true
+  });
+}
+
 const init = () => {
   gsap.registerPlugin(ScrollTrigger);
   slider();
   header();
   initParallaxImages();
   placeTextAnimation();
+  pageGallery();
 };
 preloadImages("img").then(() => {
   // Once images are preloaded, remove the 'loading' indicator/class from the body

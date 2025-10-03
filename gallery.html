@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Residential Complex Eniteo | 3D tour</title>
+    <title>Residential Complex Eniteo | Gallery</title>
     <!-- import favicon -->
     <link
       rel="icon"
@@ -31,9 +31,8 @@
       }
     </script>
   </head>
-  <body class="overflow-hidden page-3d-tour">
+  <body>
     <!-- layout -->
-
     <!-- header -->
     <script>
       fetch("./components/header.html")
@@ -97,48 +96,35 @@
     </div>
     <!-- end header -->
     <main data-lenis-prevent>
-      <section class="paronama-tour">
-        <div class="paronama-tour__wrapper">
-          <canvas id="paronama-tour"></canvas>
-          <div class="paronama-tour__control">
-            <div class="nav-btn prev color-black btn--circle">
-              <svg
-                class="icon icon-btn-arrow-left"
-                width="20"
-                height="20"
-                aria-hidden="true"
-              >
-                <path
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  d="M20 9.877H1.481l9.26 9.259M3.95 7.407l6.79-6.79"
-                  stroke="currentColor"
-                  stroke-width="1.2"
-                  stroke-miterlimit="10"
-                />
-              </svg>
-            </div>
-            <div class="control-center">
-              <div class="control-hide color-black btn--circle">
-                <div class="icon"></div>
+      <section class="section-gallery">
+        <div class="gallery-wrapper">
+          <h1 class="gallery-title text-uppercase">Gallery</h1>
+          <div class="swiper gallery-swiper">
+            <div class="swiper-wrapper">
+              <div class="swiper-slide">
+                <div class="text">Amenities</div>
+                <div class="image">
+                  <img src="./assets/images/advantages-1.jpg" alt="" />
+                </div>
               </div>
-            </div>
-            <div class="nav-btn next color-black btn--circle">
-              <svg
-                class="icon icon-btn-arrow-right"
-                width="20"
-                height="20"
-                aria-hidden="true"
-              >
-                <path
-                  xmlns="http://www.w3.org/2000/svg"
-                  d="M0 9.877h18.518L9.26 19.136M16.05 7.407L9.26.617"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="1.2"
-                  stroke-miterlimit="10"
-                />
-              </svg>
+              <div class="swiper-slide">
+                <div class="text">Exteriors</div>
+                <div class="image">
+                  <img src="./assets/images/advantages-2.jpg" alt="" />
+                </div>
+              </div>
+              <div class="swiper-slide">
+                <div class="text">Parking</div>
+                <div class="image">
+                  <img src="./assets/images/advantages-3.jpg" alt="" />
+                </div>
+              </div>
+              <div class="swiper-slide">
+                <div class="text">Interiors</div>
+                <div class="image">
+                  <img src="./assets/images/advantages-4.jpg" alt="" />
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -170,7 +156,6 @@
     <script src="./assets/libs/OrbitControls.min.js"></script>
     <!-- import custom js -->
     <script type="module" src="./assets/main/js/script.min.js"></script>
-    <script type="module" src="./assets/main/js/3d-tour.min.js"></script>
 
     <!-- end import custom js -->
   </body>
