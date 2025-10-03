@@ -401,7 +401,44 @@ function pageGallery() {
       releaseOnEdges: false,
       sensitivity: 1
     },
-    mousewheel: true
+    on: {
+      slideChangeTransitionStart: function () {
+        // Animate OUT cho tất cả text trong slide cũ
+        this.slides.forEach((slide, index) => {
+          if (index !== this.activeIndex) {
+            let title = slide.querySelector(".text");
+            if (title) {
+              gsap.to(title, {
+                rotateX: 90,
+                opacity: 0,
+                transformOrigin: "50% 0%",
+                ease: "power2.in",
+                duration: 0.5,
+                delay: 0.5
+              });
+            }
+          }
+        });
+
+        // Animate IN cho slide mới
+        let activeSlide = this.slides[this.activeIndex];
+        let activeTitle = activeSlide.querySelector(".text");
+        if (activeTitle) {
+          gsap.fromTo(
+            activeTitle,
+            { rotateX: -90, opacity: 0, transformOrigin: "50% 100%" },
+            {
+              rotateX: 0,
+              opacity: 1,
+              transformOrigin: "50% 100%",
+              ease: "power2.out",
+              duration: 0.7,
+              delay: 0.5
+            }
+          );
+        }
+      }
+    }
   });
 }
 

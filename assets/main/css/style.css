@@ -775,6 +775,11 @@ body {
 .section-gallery .gallery-swiper .swiper-slide {
   width: 475px;
   height: 475px;
+  opacity: 0.3;
+  transition: opacity 0.5s ease;
+}
+.section-gallery .gallery-swiper .swiper-slide.swiper-slide-active {
+  opacity: 1;
 }
 .section-gallery .gallery-swiper .swiper-slide .image {
   width: 100%;
@@ -797,4 +802,10 @@ body {
   text-align: center;
   color: #e9e4dc;
   text-transform: uppercase;
+}
+.section-gallery .gallery-swiper .swiper-slide .cta {
+  position: absolute;
+  bottom: 40px;
+  left: 50%;
+  transform: translateX(-50%);
 }
