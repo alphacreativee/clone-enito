@@ -403,11 +403,11 @@ function pageGallery() {
     },
     on: {
       slideChangeTransitionStart: function () {
-        // Animate OUT cho tất cả text trong slide cũ
         this.slides.forEach((slide, index) => {
           if (index !== this.activeIndex) {
             let title = slide.querySelector(".text");
             if (title) {
+              gsap.killTweensOf(title);
               gsap.to(title, {
                 rotateX: 90,
                 opacity: 0,
@@ -420,10 +420,10 @@ function pageGallery() {
           }
         });
 
-        // Animate IN cho slide mới
         let activeSlide = this.slides[this.activeIndex];
         let activeTitle = activeSlide.querySelector(".text");
         if (activeTitle) {
+          gsap.killTweensOf(activeTitle);
           gsap.fromTo(
             activeTitle,
             { rotateX: -90, opacity: 0, transformOrigin: "50% 100%" },
@@ -436,6 +436,15 @@ function pageGallery() {
               delay: 0.5
             }
           );
+        }
+
+        let activeColor = activeSlide.dataset.color;
+        if (activeColor) {
+          gsap.to(".section-gallery", {
+            backgroundColor: activeColor,
+            duration: 1,
+            ease: "power2.inOut"
+          });
         }
       }
     }
