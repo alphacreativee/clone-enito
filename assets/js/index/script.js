@@ -449,6 +449,78 @@ function pageGallery() {
       }
     }
   });
+
+  document.querySelectorAll(".swiper-gallery-modal").forEach((el) => {
+    // Lấy phần tử pagination cùng cấp (ngay sau .swiper-gallery-modal)
+    const pagination = el.nextElementSibling?.classList.contains(
+      "swiper-pagination-custom"
+    )
+      ? el.nextElementSibling
+      : null;
+
+    const swiper = new Swiper(el, {
+      direction: "horizontal",
+      slidesPerView: "auto",
+      spaceBetween: 40,
+      loop: false,
+      speed: 800,
+      parallax: true,
+      mousewheel: {
+        forceToAxis: false,
+        sensitivity: 1,
+        releaseOnEdges: true
+      },
+      on: {
+        slideChange() {
+          if (pagination) {
+            pagination.textContent = `${this.realIndex + 1} / ${
+              this.slides.length
+            }`;
+          }
+        }
+      }
+    });
+
+    el.addEventListener("shown.bs.modal", () => {
+      swiper.update();
+      const totalSlides = swiper.slides.length;
+      if (pagination) pagination.textContent = `1 / ${totalSlides}`;
+    });
+  });
+
+  document.querySelectorAll(".modal-gallery .big-title").forEach((title) => {
+    gsap.set(title, {
+      rotateX: -90,
+      opacity: 0,
+      transformOrigin: "50% 100%"
+    });
+  });
+
+  document.querySelectorAll(".modal-gallery").forEach((modal) => {
+    modal.addEventListener("shown.bs.modal", () => {
+      const bigTitle = modal.querySelector(".big-title");
+      if (bigTitle) {
+        gsap.to(bigTitle, {
+          rotateX: 0,
+          opacity: 1,
+          duration: 0.7,
+          ease: "power2.out",
+          delay: 0.2
+        });
+      }
+    });
+
+    modal.addEventListener("hidden.bs.modal", () => {
+      const bigTitle = modal.querySelector(".big-title");
+      if (bigTitle) {
+        gsap.set(bigTitle, {
+          rotateX: -90,
+          opacity: 0,
+          transformOrigin: "50% 100%"
+        });
+      }
+    });
+  });
 }
 
 const init = () => {
