@@ -817,6 +817,19 @@ body {
   left: 50%;
   transform: translateX(-50%);
 }
+.section-gallery .gallery-swiper-pagination {
+  position: absolute;
+  z-index: 3;
+  bottom: 32px;
+  right: 32px;
+  color: var(--color-white);
+}
+.section-gallery .gallery-swiper-next {
+  position: absolute;
+  bottom: 32px;
+  left: 64px;
+  transform: rotate(90deg);
+}
 
 .modal-gallery {
   transition: all 0.3s ease;

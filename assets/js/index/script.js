@@ -401,6 +401,9 @@ function pageGallery() {
       releaseOnEdges: false,
       sensitivity: 1
     },
+    navigation: {
+      nextEl: ".gallery-swiper-next"
+    },
     on: {
       slideChangeTransitionStart: function () {
         this.slides.forEach((slide, index) => {
@@ -439,12 +442,39 @@ function pageGallery() {
         }
 
         let activeColor = activeSlide.dataset.color;
+        let activeColorText = activeSlide.dataset.colorText;
         if (activeColor) {
           gsap.to(".section-gallery", {
             backgroundColor: activeColor,
             duration: 1,
             ease: "power2.inOut"
           });
+
+          gsap.to(".gallery-swiper-pagination", {
+            color: activeColorText,
+            duration: 0.8,
+            ease: "power2.inOut"
+          });
+        }
+      },
+      init() {
+        const realSlides = this.slides.filter(
+          (s) => !s.classList.contains("swiper-slide-duplicate")
+        );
+        const pagination = document.querySelector(".gallery-swiper-pagination");
+        if (pagination) {
+          pagination.textContent = `1 / ${realSlides.length}`;
+        }
+      },
+      slideChange() {
+        const realSlides = this.slides.filter(
+          (s) => !s.classList.contains("swiper-slide-duplicate")
+        );
+        const pagination = document.querySelector(".gallery-swiper-pagination");
+        if (pagination) {
+          pagination.textContent = `${this.realIndex + 1} / ${
+            realSlides.length
+          }`;
         }
       }
     }
