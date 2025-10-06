@@ -271,6 +271,21 @@ body {
   stroke-width: 2;
 }
 
+.spacing-header {
+  height: 124px;
+}
+
+.breadcrumb {
+  display: flex;
+  gap: 10px;
+  text-transform: uppercase;
+  font-size: 11px;
+  color: var(--color-third);
+}
+.breadcrumb a {
+  transition: all 0.4s ease;
+}
+
 .slider {
   display: flex;
   align-items: center;
@@ -915,4 +930,16 @@ body {
   top: 32px;
   left: 50px;
   mix-blend-mode: difference;
+}
+
+.apartment-floor {
+  padding: 0 64px;
+}
+.apartment-floor .floor-wrapper .main-floor {
+  max-width: 1040px;
+  margin: 0 auto;
+}
+
+.page-flat-floor {
+  background-color: #e9e4dc;
 }

@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Residential Complex Eniteo | Flat floor</title>
+    <!-- import favicon -->
+    <link
+      rel="icon"
+      href="./assets/images/favicon-eniteo.png"
+      type="image/x-icon"
+    />
+    <!-- meta -->
+    <meta property="og:url" content="" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="" />
+    <meta property="og:description" content="" />
+    <meta property="og:image" content="" />
+    <!-- meta -->
+    <link rel="stylesheet" href="./assets/libs/bootstrap.min.css" />
+    <link rel="stylesheet" href="./assets/libs/lenis.css" />
+    <link rel="stylesheet" href="./assets/libs/swiper-bundle.min.css" />
+    <!-- end meta -->
+    <!-- link custom css page -->
+    <link rel="stylesheet" href="./assets/main/css/style.min.css" />
+    <!-- end link custom css page -->
+    <!-- scrollRestoration -->
+    <script>
+      if ("scrollRestoration" in history) {
+        history.scrollRestoration = "manual";
+      }
+    </script>
+  </head>
+  <body class="page-flat-floor">
+    <!-- layout -->
+    <!-- header -->
+    <script>
+      fetch("./components/header.html")
+        .then((response) => response.text())
+        .then((data) => {
+          document.getElementById("header").innerHTML = data;
+          const currentPath = window.location.pathname || "/";
+
+          const navLinks = document.querySelectorAll(".header-menu ul>li>a");
+          navLinks.forEach((link) => {
+            const linkPath = link.getAttribute("href");
+
+            // Normalize paths for comparison
+            let normalizedCurrentPath = currentPath;
+            let normalizedLinkPath = linkPath;
+
+            // Remove leading "./" from link path
+            if (normalizedLinkPath.startsWith("./")) {
+              normalizedLinkPath = normalizedLinkPath.substring(1);
+            }
+
+            // For GitHub Pages, get the last segment of the path
+            const currentSegment =
+              normalizedCurrentPath.split("/").pop() || "/";
+            const linkSegment = normalizedLinkPath.split("/").pop() || "/";
+
+            // Check if paths match
+            const isMatch =
+              normalizedLinkPath === normalizedCurrentPath || // Exact match
+              currentSegment === linkSegment || // Segment match
+              (currentPath.endsWith(normalizedLinkPath) &&
+                normalizedLinkPath !== "/") || // Ends with
+              (currentPath === "/" && (linkPath === "/" || linkPath === "./")); // Home page
+
+            if (isMatch) {
+              link.classList.add("active");
+            }
+          });
+        });
+    </script>
+    <header id="header" class="header"></header>
+    <div class="cta-calling">
+      <a href="#" class="call color-black btn--circle">
+        <svg
+          class="icon icon-phone icon--no-margins"
+          width="19"
+          height="20"
+          aria-hidden="true"
+        >
+          <path
+            xmlns="http://www.w3.org/2000/svg"
+            d="M1.451 4.125c-1.125 2.5-.125 6.625 2.75 10 3.5 4.125 8.5 5.75 11 3.625l2-1.625-2.75-3.375-2.125 1.625c-1.5 1.25-4.25.375-6.125-2S3.826 7.25 5.326 6l2-1.625L4.451 1"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.2"
+            stroke-miterlimit="10"
+            stroke-linecap="square"
+          />
+        </svg>
+      </a>
+    </div>
+    <!-- end header -->
+    <main>
+      <div class="spacing-header"></div>
+      <section class="apartment-floor">
+        <div class="floor-wrapper">
+          <div
+            class="floor-wrapper__top d-flex align-items-start justify-content-between"
+          >
+            <div class="breadcrumb">
+              <span>
+                <a href="#">Visual selection</a>
+              </span>
+              /
+              <span>
+                <a href="#">Building 2</a>
+              </span>
+            </div>
+            <div class="btn-back btn--primary text-uppercase color-primary">
+              <svg
+                class="icon icon-btn-arrow-left"
+                width="20"
+                height="20"
+                aria-hidden="true"
+              >
+                <path
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  d="M20 9.877H1.481l9.26 9.259M3.95 7.407l6.79-6.79"
+                  stroke="currentColor"
+                  stroke-width="1.2"
+                  stroke-miterlimit="10"
+                ></path>
+              </svg>
+              <span>Floor selection</span>
+            </div>
+          </div>
+          <div class="floor-wrapper__bottom">
+            <div class="slider-floor"></div>
+            <div class="main-floor">
+              <div class="main-floor__item" id="flat-1"></div>
+              <div class="main-floor__item d-none" id="flat-2"></div>
+              <script>
+                fetch("./components/flat-floor/flat-1.html")
+                  .then((response) => response.text())
+                  .then((data) => {
+                    document.getElementById("flat-1").innerHTML = data;
+                  });
+
+                fetch("./components/flat-floor/flat-2.html")
+                  .then((response) => response.text())
+                  .then((data) => {
+                    document.getElementById("flat-2").innerHTML = data;
+                  });
+              </script>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+    <!-- layout -->
+    <!-- footer -->
+    <script>
+      fetch("./components/footer.html")
+        .then((response) => response.text())
+        .then((data) => {
+          document.getElementById("footer").innerHTML = data;
+        });
+    </script>
+    <footer id="footer"></footer>
+    <!-- end footer -->
+    <!-- end layout -->
+
+    <script src="./assets/libs/jquery-3.7.1.js"></script>
+    <script src="./assets/libs/lenis.min.js"></script>
+    <script src="./assets/libs/gsap.min.js"></script>
+    <script src="./assets/libs/ScrollTrigger.min.js"></script>
+    <script src="./assets/libs/SplitText.min.js"></script>
+    <script src="./assets/libs/bootstrap.bundle.min.js"></script>
+    <script src="./assets/libs/imagesloaded.pkgd.min.js"></script>
+    <script src="./assets/libs/swiper-bundle.min.js"></script>
+
+    <script src="./assets/libs/three.min.js"></script>
+    <script src="./assets/libs/OrbitControls.min.js"></script>
+    <!-- import custom js -->
+    <script type="module" src="./assets/main/js/script.min.js"></script>
+
+    <!-- end import custom js -->
+  </body>
+</html>
+<!-- https://gsap.com/community/forums/topic/30338-circular-carouselslider/ -->
